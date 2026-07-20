@@ -6,3 +6,6 @@ matplotlib
 xgboost
 imbalanced-learn
 shap
+fastapi
+uvicorn[standard]
+joblib

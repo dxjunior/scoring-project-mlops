@@ -1,0 +1,34 @@
+{
+  "model_name": "random_forest",
+  "threshold": 0.5700000000000002,
+  "feature_columns": [
+    "age",
+    "hypertension",
+    "heart_disease",
+    "avg_glucose_level",
+    "bmi",
+    "cardio_risk_count",
+    "age_glucose_interaction",
+    "gender_Male",
+    "ever_married_Yes",
+    "work_type_Never_worked",
+    "work_type_Private",
+    "work_type_Self-employed",
+    "work_type_children",
+    "Residence_type_Urban",
+    "smoking_status_formerly smoked",
+    "smoking_status_never smoked",
+    "smoking_status_smokes",
+    "age_group_young_adult",
+    "age_group_adult",
+    "age_group_senior",
+    "bmi_category_normal",
+    "bmi_category_overweight",
+    "bmi_category_obese"
+  ],
+  "params": {
+    "n_estimators": 200,
+    "max_depth": 5,
+    "random_state": 42
+  }
+}
