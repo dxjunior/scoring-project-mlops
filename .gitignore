@@ -1,0 +1,29 @@
+# Environnement virtuel Python
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Données (souvent volumineuses, ne pas versionner sur GitHub)
+data/*.csv
+
+# MLFlow
+mlflow.db
+mlruns/
+mlartifacts/
+
+# Artefacts générés
+*.png
+model_comparison.csv
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Variables d'environnement / secrets
+.env
+*.pem
+
+# IDE
+.vscode/
+.idea/
