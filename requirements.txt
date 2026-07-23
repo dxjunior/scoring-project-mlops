@@ -9,3 +9,5 @@ shap
 fastapi
 uvicorn[standard]
 joblib
+httpx2
+pytest
