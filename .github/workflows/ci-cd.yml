@@ -1,0 +1,48 @@
+name: CI/CD - Tests et déploiement
+
+# Déclenche le workflow à chaque push et pull request sur main
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Exécution des tests automatisés
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupération du code
+        uses: actions/checkout@v4
+
+      - name: Installation de Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache des dépendances pip (accélère les runs suivants)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+
+      - name: Installation des dépendances
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Exécution des tests
+        run: pytest tests/ -v
+
+  deploy:
+    name: Déploiement sur Render
+    needs: test  # ⚠️ Ne s'exécute QUE si le job "test" a réussi
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Déclenchement du déploiement Render
+        run: |
+          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
